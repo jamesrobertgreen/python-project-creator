@@ -26,10 +26,17 @@ function create_files {
            "$project_name/test/test_main.py"
            "$project_name/test/__init__.py" )
 
+    dirs=("$project_name"
+          "$project_name/test/" )
+    for d in "${dirs[@]}"
+    do
+        echo "Creating directory $d"
+        mkdir ${d}
+    done
     for f in "${files[@]}"
     do
-        echo $f
-        echo ''
+        echo "Creating file $f"
+        touch $f
     done
 }
 
