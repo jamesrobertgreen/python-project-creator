@@ -56,14 +56,13 @@ function write_gitignore {
 }
 
 function write_setup_py {
-    setup_str=$'from setuptools import setup\n\nsetup(name=\'project_name\',\n\tversion=\'1.0\',\n\tdescription=\'\',\n\tclassifiers=[\n\t\tProgramming Language :: Python :: 2.7\',\n\t\t\'License :: OSI Approved :: MIT License\',\n\t\t\'Intended Audience :: Developers\',\n\t],\n\turl=\'\',\n\tmaintainer=\'James Green\',\n\tmaintainer_email=\'jrgreen@gmail.com\',\n\tlicense=\'MIT\',\n\tpackages=[\'$project\'],\n\tsetup_requires[\'nose>=1.0\'],\n\ttests_require[\n\t\t\'mock\',\n\t\t\'nose>=1.0\',\n\t],\n\tentry_points={\n\t\t\'console_scripts\': [\n\t\t\'project_name = project_name.main:main\'\n\t\t\t]\n\t\t})'
-    setup_str=$(echo $setup_str | sed "s/project_name/$project_name/g")
+    setup_str=$'from setuptools import setup\n\nsetup(name=\'project_name\',\n\tversion=\'1.0\',\n\tdescription=\'\',\n\tclassifiers=[\n\t\tProgramming Language :: Python :: 2.7\',\n\t\t\'License :: OSI Approved :: MIT License\',\n\t\t\'Intended Audience :: Developers\',\n\t],\n\turl=\'\',\n\tmaintainer=\'James Green\',\n\tmaintainer_email=\'jrgreen@gmail.com\',\n\tlicense=\'MIT\',\n\tpackages=[\'project_name\'],\n\tsetup_requires[\'nose>=1.0\'],\n\ttests_require[\n\t\t\'mock\',\n\t\t\'nose>=1.0\',\n\t],\n\tentry_points={\n\t\t\'console_scripts\': [\n\t\t\'project_name = project_name.main:main\'\n\t\t\t]\n\t\t})'
+    setup_str="${setup_str//project_name/$project_name}"
     echo "$setup_str" > "setup.py"
 }
 
 function write_readme {
-    readme_str=$"#$project_name"
-    echo "$readme_str" > "README.md"
+    echo "$project_name" > "README.md"
 }
 
 main
