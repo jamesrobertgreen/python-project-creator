@@ -13,6 +13,7 @@ function main {
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         create_files
+        write_app_py
     fi
 }
 
@@ -40,6 +41,9 @@ function create_files {
     done
 }
 
+function write_app_py {
+    app_str=$'def main():\n\tprint(\'Hello\')\n\n\nif __name__ == \'__main__\':\n\tmain()'
+    echo "$app_str" > "$project_name/main.py"
+}
+
 main
-
-
